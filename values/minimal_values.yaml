@@ -1,0 +1,51 @@
+global:
+  namespaceOverride: camunda
+
+camundaCloud:
+  enabled: false
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+
+zeebe:
+  enabled: true
+  clusterSize: 2
+  gateway:
+    replicas: 2
+
+identity:
+  enabled: false
+
+optimize:
+  enabled: false
+
+tasklist:
+  enabled: false
+
+operate:
+  enabled: true
+  ingress:
+    enabled: true
+    hosts:
+      - host: operate.example.com
+        paths:
+          - /
+    tls:
+      enabled: false
+
+elasticsearch:
+  enabled: true
+  replicas: 1
+  volumeClaimTemplate:
+    storageClassName: <STORAGE_CLASS_NAME>
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+
+kibana:
+  enabled: true
+  replicas: 1
